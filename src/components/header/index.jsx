@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 
-const Header = () => {
+const Header = ({ handleOnChange }) => {
   return (
     <header className="header p-4 flex items-center justify-between">
       <div className="flex flex-col items-start">
@@ -14,10 +15,14 @@ const Header = () => {
           type="text"
           className="input-search rounded-lg bg-gray-darker p-3.5 border-2 border-gray-dark pl-10"
           placeholder="Search for food, coffee, etc..."
+          onChange={event => handleOnChange(event.target.value)}
         />
       </div>
     </header>
   );
 };
 
+Header.propTypes = {
+  handleOnChange: PropTypes.func.isRequired
+};
 export default Header;

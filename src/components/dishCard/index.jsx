@@ -14,7 +14,7 @@ const DishCard = ({ name, price, image, onAddToOrder }) => {
               className="flex items-center justify-between text-sm text-orange font-bold gap-x-0.5 "
               onClick={onAddToOrder}
             >
-              <AddIcon />
+              <AddIcon className="stroke-orange" />
               Add to order
             </button>
           </div>

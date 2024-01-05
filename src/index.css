@@ -4,7 +4,8 @@
 
 @layer base {
   :root {
-    --primary-color: 235 150 106;
+    --primary-color-rgb: 235 150 106;
+    --primary-color: #ea7c69;
     --bg-dark-1: #252836;
     --bg-dark-2: #1f1d2b;
     --line: #393c49;
@@ -22,6 +23,15 @@
     -moz-osx-font-smoothing: grayscale;
     color: var(--white);
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
@@ -31,5 +41,22 @@
 
   .tabs-item {
     border-bottom: 2px solid var(--line);
+  }
+
+  .confirm-popup {
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .payment-section {
+    width: 405px;
   }
 }

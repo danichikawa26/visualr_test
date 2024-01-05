@@ -2,7 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ReactComponent as DeleteIcon } from "../../../assets/icons/delete.svg";
 
-const OrderItem = ({ image, name, quantity, price, onRemove }) => {
+const OrderItem = ({
+  image,
+  name,
+  quantity,
+  price,
+  onRemove,
+  onQuantityChange
+}) => {
   return (
     <div>
       <div className="grid grid-row-1 pt-6">
@@ -18,7 +25,10 @@ const OrderItem = ({ image, name, quantity, price, onRemove }) => {
           </div>
           <input
             className="rounded-lg bg-gray-darker p-3.5 w-12 h-12 text-center justify-self-end"
+            type="number"
+            min="1"
             placeholder={quantity}
+            onChange={event => onQuantityChange(parseInt(event.target.value))}
           />
           <p className="text-base font-medium place-self-center">{`$${(
             price * quantity
@@ -48,7 +58,8 @@ OrderItem.propTypes = {
   name: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
-  onRemove: PropTypes.func.isRequired
+  onRemove: PropTypes.func.isRequired,
+  onQuantityChange: PropTypes.func.isRequired
 };
 
 export default OrderItem;

@@ -13,7 +13,7 @@ const SideBar = ({ menuItems, onSelectMenuItem, selectedItem }) => {
   return (
     <div className="sidebar-container bg-blue-dark text-white p-4">
       <ul className="space-y-3 bg-blue-dark flex flex-col items-center justify-center">
-        <div className="p-2 rounded-md bg-orange/[.26] mb-3">
+        <div className="p-2 rounded-md bg-orange-light/[.26] mb-3">
           <Logo />
         </div>
         {menuItems.map((item, index) => (
@@ -49,12 +49,12 @@ const SideBar = ({ menuItems, onSelectMenuItem, selectedItem }) => {
 SideBar.propTypes = {
   menuItems: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
+      id: PropTypes.number.isRequired,
+      label: PropTypes.object.isRequired
     })
   ).isRequired,
   onSelectMenuItem: PropTypes.func.isRequired,
-  selectedItem: PropTypes.string
+  selectedItem: PropTypes.number
 };
 
 export default SideBar;

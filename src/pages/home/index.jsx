@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/header";
 import SideBar from "../../components/sidebar";
 import Tabs from "../../components/tabs";
-import SearchInput from "../../components/searchInput";
 import DishesList from "../../components/dishesList";
 import OrderSection from "../../components/orderDetails/orderSection";
-import PaymentSection from "../../components/paymentSection";
-import { menuItems, categories, allDishes } from "../../service/data";
+import {
+  menuItems,
+  categories,
+  allDishes,
+  paymentMethods
+} from "../../service/data";
+import ConfirmPopup from "../../components/confirmPopup";
 
 const HomePage = () => {
-  const [activeTab, setActiveTab] = useState("1");
-  const [selectedMenuItem, setSelectedMenuItem] = useState("1");
+  const [activeTab, setActiveTab] = useState(1);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(1);
   const [dishes, setDishes] = useState(allDishes);
   const [order, setOrder] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,6 +40,13 @@ const HomePage = () => {
     setOrder(prevOrder => prevOrder.filter(item => item.id !== itemId));
   };
 
+  const changeQuantityItem = (itemId, value) => {
+    setOrder(prevOrder =>
+      prevOrder.map(item =>
+        item.id === itemId ? { ...item, quantity: value } : item
+      )
+    );
+  };
   const handleSearchChange = term => {
     setSearchTerm(term);
     if (term) {
@@ -44,7 +55,7 @@ const HomePage = () => {
       );
       setDishes(filteredDishes);
     } else {
-      setDishes(dishes);
+      setDishes(allDishes);
     }
   };
 
@@ -100,7 +111,7 @@ const HomePage = () => {
           selectedItem={selectedMenuItem}
         />
         <div className="content flex-grow bg-blue p-5">
-          <Header />
+          <Header handleOnChange={handleSearchChange} />
           <Tabs
             activeTab={activeTab}
             onSelectTab={setActiveTab}
@@ -113,8 +124,21 @@ const HomePage = () => {
           total={totalCost}
           onRemoveItem={removeFromOrder}
           onConfirm={confirmOrder}
+          onChangeItem={changeQuantityItem}
+          isConfirmPopup={false}
         />
-        {isPaymentSectionVisible && <PaymentSection />}
+        {isPaymentSectionVisible && (
+          <ConfirmPopup
+            items={order}
+            total={totalCost}
+            onRemoveItem={removeFromOrder}
+            onConfirm={confirmOrder}
+            onChangeItem={changeQuantityItem}
+            onPaymentSubmit={handleSubmitPayment}
+            onClose={() => setIsPaymentSectionVisible(false)}
+            paymentMethods={paymentMethods}
+          />
+        )}
       </div>
     </div>
   );

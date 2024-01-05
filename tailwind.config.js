@@ -3,6 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     colors: {
+      current: "currentColor",
+      white: {
+        DEFAULT: "var(--white)"
+      },
       gray: {
         lighter: "var(--text-lighter-gray)",
         light: "var(--text-light-gray)",
@@ -15,7 +19,8 @@ module.exports = {
         dark: "var(--bg-dark-2)"
       },
       orange: {
-        DEFAULT: "rgb(var(--primary-color) / <alpha-value>)"
+        light: "rgb(var(--primary-color-rgb) / <alpha-value>)",
+        DEFAULT: "var(--primary-color)"
       }
     }
   },

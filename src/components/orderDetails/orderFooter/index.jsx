@@ -1,27 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../button"; // Import the Button component you created
+import Button from "../../button";
 
-const OrderFooter = ({ total, onConfirm }) => {
+const OrderFooter = ({ total, onConfirm, isConfirmPopup }) => {
   return (
-    <div className="flex justify-between items-center p-4 bg-gray-800 text-white">
-      <div>
-        <p className="text-sm">Subtotal</p>
-        <p className="text-xl font-bold">{`$${total.toFixed(2)}`}</p>
+    <div
+      className={`flex flex-col m-6 pt-6 text-white absolute left-0 right-0 bottom-0 bg-blue-dark ${isConfirmPopup &&
+        "border-t-2 border-gray-dark"}
+    `}
+    >
+      <div className="flex justify-between items-center">
+        <p className="text-sm text-gray-lighter">Discount</p>
+        <p className="text-base font-bold">$0</p>
       </div>
-      <Button
-        label="Confirm Order"
-        variant="alert" // Assuming 'alert' is styled as per the Figma design
-        size="large"
-        onClick={onConfirm}
-      />
+      <div className="flex justify-between items-center mb-10">
+        <p className="text-sm text-gray-lighter">Sub total</p>
+        <p className="text-base font-bold">{`$${total.toFixed(2)}`}</p>
+      </div>
+      {!isConfirmPopup && (
+        <Button
+          label="Continue to payment"
+          variant="primary"
+          size="large"
+          onClick={onConfirm}
+        />
+      )}
     </div>
   );
 };
 
 OrderFooter.propTypes = {
   total: PropTypes.number.isRequired,
-  onConfirm: PropTypes.func.isRequired
+  onConfirm: PropTypes.func.isRequired,
+  isConfirmPopup: PropTypes.bool
 };
 
 export default OrderFooter;

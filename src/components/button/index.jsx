@@ -8,16 +8,17 @@ const Button = ({ label, onClick, variant, size, isDisabled }) => {
 
   // Variant styles
   const variantStyles = {
-    primary: "bg-blue-500 hover:bg-blue-700 text-white",
-    secondary: "bg-gray-500 hover:bg-gray-700 text-white",
-    alert: "bg-red-500 hover:bg-red-700 text-white"
+    primary:
+      "bg-orange hover:bg-orange-light text-white font-bold rounded-lg w-full",
+    secondary:
+      "bg-transparent border-2 border-orange text-orange hover:bg-orange hover:text-white font-bold rounded-lg w-full"
   };
 
   // Size styles
   const sizeStyles = {
     small: "text-xs py-2 px-4",
     medium: "text-sm py-3 px-6",
-    large: "text-lg py-4 px-8"
+    large: "text-lg p-3.5"
   };
 
   // Combine the base style with variant and size styles

@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-const DishCard = ({ name, description, price, image, onAddToOrder }) => {
+import { ReactComponent as AddIcon } from "../../assets/icons/add.svg";
+const DishCard = ({ name, price, image, onAddToOrder }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-2">
-      <img className="w-full" src={image} alt={name} />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
-        <p className="text-gray-700 text-base mb-4">{description}</p>
-        <div className="flex justify-between items-center">
-          <span className="text-lg">{`$${price.toFixed(2)}`}</span>
-          <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            onClick={onAddToOrder}
-          >
-            Add to order
-          </button>
+    <div className="flex flex-col items-center justify-center">
+      <img className="-mb-24 z-10" src={image} alt={name} />
+      <div className="w-48 rounded-lg shadow-lg bg-blue-dark m-2 pt-20">
+        <div className="px-6 py-4">
+          <div className="flex flex-col justify-between items-center gap-y-1">
+            <p className="font-medium text-sm mb-2">{name}</p>
+            <span className="text-sm">{`$${price.toFixed(2)}`}</span>
+            <button
+              className="flex items-center justify-between text-sm text-orange font-bold gap-x-0.5 "
+              onClick={onAddToOrder}
+            >
+              <AddIcon />
+              Add to order
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -24,7 +26,6 @@ const DishCard = ({ name, description, price, image, onAddToOrder }) => {
 
 DishCard.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   onAddToOrder: PropTypes.func.isRequired

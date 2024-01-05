@@ -5,9 +5,9 @@ import OrderFooter from "../orderFooter";
 
 const OrderSection = ({ items, onRemoveItem, total, onConfirm }) => {
   return (
-    <div className="order-section-container">
+    <div className="order-section-container bg-blue-dark w-96">
       <OrderList items={items} onRemoveItem={onRemoveItem} />
-      <OrderFooter total={total} onConfirm={onConfirm} />
+      {items.length > 0 && <OrderFooter total={total} onConfirm={onConfirm} />}
     </div>
   );
 };

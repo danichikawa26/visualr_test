@@ -1,21 +1,20 @@
 import React from "react";
+import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 
 const Header = () => {
   return (
     <header className="header p-4 flex items-center justify-between">
-      <div className="flex items-center">
-        <img src="/path-to-your-logo.png" alt="Logo" className="h-8 mr-2" />
-        <span className="text-lg font-bold">Jaegar Resto</span>
+      <div className="flex flex-col items-start">
+        <span className="text-white font-semibold text-xl">Jaegar Resto</span>
+        <span className="text-base text-white">Tuesday 2 Feb, 2021</span>
       </div>
-      <div className="flex items-center">
-        <span className="text-sm">Tuesday 2 Feb, 2021</span>
-        <div className="ml-4 relative">
-          <input
-            type="text"
-            className="input-search"
-            placeholder="Search for food, coffee, etc..."
-          />
-        </div>
+      <div className="ml-4 relative">
+        <SearchIcon className="absolute left-3 top-5" />
+        <input
+          type="text"
+          className="input-search rounded-lg bg-gray-darker p-3.5 border-2 border-gray-dark pl-10"
+          placeholder="Search for food, coffee, etc..."
+        />
       </div>
     </header>
   );

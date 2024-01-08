@@ -7,7 +7,6 @@ const PaymentSection = ({ onPaymentSubmit, paymentMethods }) => {
   const [selectedItemId, setSelectedItemId] = useState(1);
 
   useEffect(() => {
-    console.log(selectedItemId);
     renderForm();
   }, [selectedItemId]);
 
